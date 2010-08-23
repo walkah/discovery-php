@@ -88,7 +88,7 @@ class Discovery_XRD
 
         if ($this->host) {
             $host_dom = $dom->createElement('hm:Host', $this->host);
-            $xrd_dom->setAttributeNS(XRD::XML_NS, 'xmlns:hm', Discovery_XRD::HOST_META_NS);
+            $xrd_dom->setAttributeNS(Discovery_XRD::XML_NS, 'xmlns:hm', Discovery_XRD::HOST_META_NS);
             $xrd_dom->appendChild($host_dom);
         }
         
