@@ -121,7 +121,6 @@ class Discovery_LRDD extends Discovery
     
     public function fetchXrd($url)
     {
-        print "Going to fetch: $url\n";
         try {
             $response = $this->http->request($url);
         } catch (Discovery_Exception $e) {
