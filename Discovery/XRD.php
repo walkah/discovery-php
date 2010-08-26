@@ -92,34 +92,34 @@ class Discovery_XRD
             $xrd_dom->appendChild($host_dom);
         }
         
-		if ($this->expires) {
-			$expires_dom = $dom->createElement('Expires', $this->expires);
-			$xrd_dom->appendChild($expires_dom);
-		}
-
-		if ($this->subject) {
-			$subject_dom = $dom->createElement('Subject', $this->subject);
-			$xrd_dom->appendChild($subject_dom);
-		}
-
-		foreach ($this->alias as $alias) {
-			$alias_dom = $dom->createElement('Alias', $alias);
-			$xrd_dom->appendChild($alias_dom);
-		}
-
-		foreach ($this->types as $type) {
-			$type_dom = $dom->createElement('Type', $type);
-			$xrd_dom->appendChild($type_dom);
-		}
-
-		foreach ($this->links as $link) {
-			$link_dom = $this->saveLink($dom, $link);
-			$xrd_dom->appendChild($link_dom);
-		}
-
+        if ($this->expires) {
+            $expires_dom = $dom->createElement('Expires', $this->expires);
+            $xrd_dom->appendChild($expires_dom);
+        }
+        
+        if ($this->subject) {
+            $subject_dom = $dom->createElement('Subject', $this->subject);
+            $xrd_dom->appendChild($subject_dom);
+        }
+        
+        foreach ($this->alias as $alias) {
+            $alias_dom = $dom->createElement('Alias', $alias);
+            $xrd_dom->appendChild($alias_dom);
+        }
+        
+        foreach ($this->types as $type) {
+            $type_dom = $dom->createElement('Type', $type);
+            $xrd_dom->appendChild($type_dom);
+        }
+        
+        foreach ($this->links as $link) {
+            $link_dom = $this->saveLink($dom, $link);
+            $xrd_dom->appendChild($link_dom);
+        }
+        
         return $dom->saveXML();
     }
-
+    
     function parseLink($element)
     {
         $link = array();
