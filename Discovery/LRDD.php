@@ -30,9 +30,7 @@ class Discovery_LRDD extends Discovery
         $links = array();
         
         // 1) Check host-meta
-        if (Discovery_LRDD::isWebfinger($id)) {
-            $links = $this->getHostMeta($id);
-        }
+        $links = $this->getHostMeta($id);
 
         if (count($links) == 0) {
             try {
@@ -61,7 +59,7 @@ class Discovery_LRDD extends Discovery
             } else {
                 $xrd_uri = $link['href'];
             }
-            
+
             $xrd = $this->fetchXrd($xrd_uri);
             if ($xrd) {
                 return $xrd;
@@ -134,12 +132,15 @@ class Discovery_LRDD extends Discovery
     
     public function getHostMeta($acct)
     {
-        // We have a webfinger acct: - start with host-meta
-        list($name, $domain) = explode('@', $acct);
+        if (Discovery_LRDD::isWebfinger($id)) {
+            // We have a webfinger acct: - start with host-meta
+            list($name, $domain) = explode('@', $acct);
+        } else {
+            $domain = parse_url($acct, PHP_URL_HOST);
+        }
         $url = 'http://'. $domain .'/.well-known/host-meta';
 
         $xrd = $this->fetchXrd($url);
-        
         if ($xrd) {
             if ($xrd->host != $domain) {
                 return false;
