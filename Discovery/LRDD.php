@@ -132,7 +132,7 @@ class Discovery_LRDD extends Discovery
     
     public function getHostMeta($acct)
     {
-        if (Discovery_LRDD::isWebfinger($id)) {
+        if (Discovery_LRDD::isWebfinger($acct)) {
             // We have a webfinger acct: - start with host-meta
             list($name, $domain) = explode('@', $acct);
         } else {
